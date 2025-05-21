@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planetary Invasion</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <div class="game-container">
+    <h1>Planetary Invasion</h1>
+    
+        <div id="start-screen">
+            <form id="player-form">
+                <label for="player-name">Your name is:</label>
+                <input type="text" id="player-name" required minlength="1" maxlength="20">
+                <button id="begin" type="submit">.</button>
+            </form>
+        </div>
+
+        <div id="game-screen" class="hidden">
+            <div id="story-text"></div>
+            <div id="choices"></div>
+                <div class="inventory">
+                    <h3>Inventory</h3>
+                    <ul id="inventory-list"></ul>
+                </div>
+            </div>
+
+        <template id="choice-template">
+            <button class="choice-btn"></button>
+        </template>
+    </div>
+    
+</body>
+</html>
