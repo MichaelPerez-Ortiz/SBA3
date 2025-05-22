@@ -6,6 +6,10 @@ const playerForm = document.getElementById("player-form");
 const playerNameInput = document.getElementById("player-name");
 const inventoryList = document.getElementById("inventory-list");
 const choiceTemplate = document.getElementById("choice-template");
+const inventorySection = document.querySelector('.inventory');
+const gameContainer = document.querySelector('.game-container');
+
+
 
 //InitialState
 let playerName = "";
@@ -56,7 +60,7 @@ neptune1: {
     text: "You reach Neptune and are amazed. It looks like a Metropolis, the city is not on the ground but hovering above it. This planet shows great promise. You land your ship on the nearest landing pad where you are greeted by armed soldiers. They see you as an intruder. You quickly explain your situation and are escorted to their laboratories where they explain the science behind their discoveries and give you an older model of their technology. You have completed your mission and have returned to Jupiter with the new technology. The scientists quickly begin work on saving their planet.", 
     choices: [
 
-        { text: "Your name will go down in History." , goto: "start", action: () => resetGame()},
+        { text: "Your name will go down in History." , action: () => resetGame()},
     ]
 },
 
@@ -75,7 +79,7 @@ neptuneEarth: {
     text: "You decide to leave Earth and go to Neptune. Upon reaching Neptune you are amazed. It looks like a Metropolis, the city is not on the ground but hovering above it. This planet shows great promise. You land your ship on the nearest landing pad where you are greeted by armed soldiers. They see you as an intruder. You quickly explain your situation and are escorted to their laboratories where they explain the science behind their discoveries and give you an older model of their technology. You have completed your mission and have returned to Jupiter with the new technology. The scientists quickly begin work on saving their planet.",
     choices: [
 
-        { text: "Your name will go down in History." , goto: "start", action: () => resetGame()},
+        { text: "Your name will go down in History." , action: () => resetGame()},
     ]
 },
 
@@ -84,7 +88,7 @@ stayEarth: {
     text: "You stay on Earth searching for a way to save your planet. You search all day and night but find nothing. The people of Earth have not come across this problem and therefore have not had to search for a solution. Unfortunatley You don't have enough time to search another planet and return to Jupiter. Your planet is no more and you must start a new life. You stay on Earth going about your days never forgetting all of the people you let down.",
     choices: [
 
-        { text: "...." , goto: "start", action: () => resetGame()},
+        { text: "...." , action: () => resetGame()},
     ]
 },
 
@@ -117,7 +121,7 @@ neptune2: {
 text: "You reach Neptune and are amazed. It looks like a Metropolis, the city is not on the ground but hovering above it. This planet shows great promise. You land your ship on the nearest landing pad where you are greeted by armed soldiers. They see you as an intruder. You quickly explain your situation and are escorted to their laboratories where they explain the science behind their discoveries and give you an older model of their technology. You have completed your mission and have returned to Jupiter with the new technology. The scientists quickly begin work on saving their planet.Your name will go down in History.",
     choices: [
 
-        { text: "Your name will go down in History." , goto: "start", action: () => resetGame()},
+        { text: "Your name will go down in History." , action: () => resetGame()},
     ]
 },
 
@@ -171,7 +175,7 @@ neptune3: {
 //End
 quiet: {
     choices: [
-        { text: "Quiet" , goto: "start", action: () => resetGame()},
+        { text: "Quiet" , action: () => resetGame()},
     ]
 },
 
@@ -205,7 +209,7 @@ neptuneHome: {
 
     text: "With nowhere to call home you return to Neptune. Maybe you can begin anew. You are greeted by Neptunes diplomats they saw the explosion everyone did. Not a star in the universe could have missed it. They offer you a home a chance to start over a chance to run away from your failure",
     choices: [
-        { text: "You accept." , goto: "start", action: () => resetGame()}
+        { text: "You accept." , action: () => resetGame()}
     ]
 },
 
@@ -231,7 +235,7 @@ earthFastEnd: {
     text: "You stay on Earth searching for a way to save your planet. You search all day and night but find nothing. The people of Earth have not come across this problem and therefore have not had to search for a solution. This was a wasted trip." + "You return to your ship and travel to Neptune.(You are on Your third day)You reach Neptune and are amazed. It looks like a Metropolis the city is not on the ground but hovering above it. This planet shows great promise. You land your ship on the nearest landing pad where you are greeted by armed soldiers. They see you as an intruder. You quickly explain your situation and are escorted to their laboratories where they explain the science behind their discoveries and gives you an older model of their technology. You have completed your mission and have returned to Jupiter with the new technology. The scientist quickly begin work on saving their planet.",
     choices: [
 
-        { text: "Your name will go down in History." , goto: "start", action: () => resetGame()},
+        { text: "Your name will go down in History." , action: () => resetGame()},
     ]
 },
 
@@ -242,81 +246,142 @@ earthFastEnd: {
 
 function resetGame() {
     inventory = [];
-    inventoryList.innerHTML = '';
-    updateStart('start');
+    inventoryList.innerHTML = "";
+    
+    gameScreen.classList.add("hidden");
+    startScreen.classList.remove("hidden");
+    gameContainer.style.height = '200px';
+
+    playerNameInput.value = "";
+    
+    inventorySection.classList.add('hidden');
+    
+    document.querySelector('.game-container')?.classList.remove('dynamic');
+    
+    storyText.textContent = "";
+    choicesDiv.innerHTML = "";
+    
+    currentPosition = "start";
 }
-
-
-playerForm.addEventListener('submit', startGame);
-
-         window.addEventListener('load', () => {
-    if (localStorage.getItem('playerName')) {
-        playerNameInput.value = localStorage.getItem('playerName');
+// Event Listeners
+playerForm.addEventListener("submit", startGame);
+window.addEventListener("load", () => {
+    if (localStorage.getItem("playerName")) {
+        playerNameInput.value = localStorage.getItem("playerName");
     }
 });
 
-
-playerNameInput.addEventListener('input', validateName);
+// Form validation
+playerNameInput.addEventListener("input", validateName);
 
 function validateName(event) {
         const name = event.target.value;
-        const errorDiv = document.querySelector('.error') || document.createElement('div');
-        errorDiv.className = 'error';
-
+        const errorDiv = document.querySelector(".error") || document.createElement("div");
+        errorDiv.className = "error";
+        
     if (name.length < 2) {
-        errorDiv.textContent = 'Name must be at least 2 characters long';
-    if (!document.querySelector('.error')) {
-         playerForm.appendChild(errorDiv);
-    }
-     } else {
-         errorDiv.remove();
+        errorDiv.textContent = "Name must be at least 2 characters long";
+        if (!document.querySelector(".error")) {
+            playerForm.appendChild(errorDiv);
+     }
+            gameContainer.classList.add('expand');
+        setTimeout(() => gameContainer.classList.remove('expand'), 300);
+    } else {
+        errorDiv.remove();
     }
 }
+
+
+//Typing Animation
+function typeText(element, text, callback) {
+    let index = 0;
+    element.textContent = '';
+    
+    function type() {
+        if (index < text.length) {
+            element.textContent += text[index];
+            index++;
+             setTimeout(type, 7);;
+        } else if (callback) {
+            callback();
+        }
+    }
+    
+    requestAnimationFrame(type);
+}
+
 
 function startGame(event) {
     event.preventDefault();
     playerName = playerNameInput.value;
-    localStorage.setItem('playerName', playerName);
+    localStorage.setItem("playerName", playerName);
+    
+        startScreen.classList.add("hidden");
+        gameScreen.classList.remove("hidden");
 
-        startScreen.classList.add('hidden');
-        gameScreen.classList.remove('hidden');
-
-    updateStart('start');
+         localStorage.setItem('playerName', playerName);
+            gameContainer.style.height = '800px';
+    
+   
+    
+    updateStart("start");
+    
 }
+
+
 
 function updateStart(startId) {
     const start = game[startId];
     currentPosition = startId;
+    
+    choicesDiv.innerHTML = "";
+    
+    storyText.textContent = "";
+    
+    //Text
+typeText(storyText, start.text, () => {
+    
 
-        storyText.textContent = start.text;
-        choicesDiv.innerHTML = '';
-
+        const fragment = document.createDocumentFragment();
         
-const fragment = document.createDocumentFragment();
+      
+        while (choicesDiv.firstChild) {
+            choicesDiv.firstChild.remove();
+        }
 
-start.choices.forEach(choice => {
-    if (!choice.requires || inventory.includes(choice.requires)) {
-        const choiceBtn = choiceTemplate.content.cloneNode(true).querySelector('button');
-        choiceBtn.textContent = choice.text;
-        choiceBtn.addEventListener('click', () => {
-
-    if (choice.action) choice.action();
-         updateStart(choice.goto);
+        //Required Items
+        start.choices?.forEach(choice => {
+            if (!choice.requires || inventory.includes(choice.requires)) {
+                const choiceBtn = choiceTemplate.content.cloneNode(true).querySelector("button");
+                choiceBtn.textContent = choice.text;
+                
+               
+                const newButton = choiceBtn.cloneNode(true);
+                
+               
+                newButton.addEventListener("click", () => {
+                    if (choice.action) choice.action();
+                    updateStart(choice.goto);
+                });
+                
+                    fragment.appendChild(newButton);
+            }
+        });
+        
+                    choicesDiv.appendChild(fragment);
     });
-        fragment.appendChild(choiceBtn);
-    }
-    });
-
-         choicesDiv.appendChild(fragment);
 }
+
+inventorySection.classList.add('hidden');
 
 function addToInventory(item) {
     if (!inventory.includes(item)) {
-            inventory.push(item);
-
+      
+        inventorySection.classList.remove('hidden');
+        
+        inventory.push(item);
         const li = document.createElement('li');
         li.textContent = item;
-
         inventoryList.appendChild(li);
     }
 }

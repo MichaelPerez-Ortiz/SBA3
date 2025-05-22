@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    height: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    background-image:linear-gradient(#1a1a1a,rgb(73, 68, 119),rgb(6, 4, 41));
+    color: #338a86;
+}
+
+h1{
+    color: #089992;
+    text-shadow: 1px 5px #1a1a1a;
+}        
+
+.blink {
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1; /* Visible */
+  }
+  50% {
+    opacity: 0; /* Invisible */
+  }
+}
+        
+.game-container {
+    background-color: #0d1d3c;
+    background-image: linear-gradient(to bottom right, #0d1d3c, #526892 );
+     min-height: 200px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+
+.game-container.expand {
+    height: 800px;
+}
+
+
+/* .game-container.expand {
+    height: auto;
+} */
+
+
+
+
+input{
+    background-color: #ff4444;
+}
+
+#begin{
+    background-color: #089992;
+    border:none;
+    border-radius: 2px;
+    box-shadow: 2px 5px 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.inventory {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #333;
+}
+
+.choice-btn {
+    margin: 5px;
+    padding: 8px 16px;
+    background-color: #4a4a4a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.choice-btn:hover {
+    background-color: #666;
+}
+
+.error {
+    color: #ff4444;
+}
+
+
