@@ -397,51 +397,88 @@ noPush: {
 //No Path Run
 
 run: {
+    text: "You have now gone A-wall and the military is searching for you. If you are caught you may be executed for abandoning your home and your people in their time of need. You can't go home as that will likely be the first place they check. You have a tough road ahead of you what will you do?",
+    choices: [
+        {text: "Return to the military" , goto: "return"},
+        {text: "Go to friend or family member" , goto: "refuge"},
+        {text: "Keep running" , goto: "running"},
+    ]
+},
+
+running: {
+    text: "You keep running never looking back. Maybe you can start over again, a second life.",
+    choices: [
+        {text: "Yeah that's what I'll do." , goto: "run2"},
+
+    ]
+},
+
+run2: {
     text: "",
     choices: [
-        {text: "" , goto: ""},
-        {text: "" , goto: ""},
+        {text: ">Two years have passed and you have fled the country<" , goto: "runningEnd"},
+    ]
+},
+
+runningEnd: {
+    text: "You started a new life with a new family, though you are not sure that the military is still looking for you, you are always cautious.",
+    choices: [
+        {text: "But that is a story for another time." , action: () => resetGame()},
+    ]
+},
+
+return: {
+    text: "You decide to return to the military base hoping for forgiveness, perhaps your life will be spared. Once you return you are greeted by the officer who initially gave you this assignment and a few more unfamiliar faces. You are told to stay where you are. The officer asks you to explain yourself. You see that you have one last chance to save your life what do you say?",
+    choices: [
+        {text: "Beg for forgiveness" , goto: "death"},
+        {text: "Ask to be reassigned to their science division" , goto: "death"},
+        {text: "I was just going for a stroll" , goto: "death"},
+    ]
+},
+
+death: {
+    text: "The officer looks at you pitifully. You realize now that you never had a chance. Rage fills your heart as you are gunned down never to be seen again.",
+    choices: [
+        {text: "Your time in this world has ended." , action: () => resetGame()},
+    ]
+},
+
+refuge: {
+    text: "You think of a place where you can go. Sorting through all of the options you realize that you only have one place to go. Your cousin lives not far from where you are now, but is this the wisest decision to make? Your cousin has never really liked you very much.",
+    choices: [
+        {text: "Go to your cousins house" , goto: "cousin"},
+        {text: "Go to your house" , goto: "home"},
     ]
 },
 
 mornAft: {
-    text: "",
+    text: "You decide that your best chance of survival is to go to your cousins house. It is very late at night when you finally arrive at your cousins home. You bang on the door waking them. Your cousin furiously invites you inside. You explain your situation and are invited to spend the night. Your cousin leaves. You are now alone with very little in the fridge and nothing on TV you decide to go to sleep. As the night goes by you hear a loud bang.",
     choices: [
-        {text: "" , goto: ""},
-        {text: "" , goto: ""},
+        {text: "Your time in this world has ended." , action: () => resetGame()},
     ]
 },
 
-mornAft: {
-    text: "",
+home: {
+    text: "You decide to go to your house, maybe you'll be safe. You enter your house through the back door only to be greeted by heavily armed soldiers.",
     choices: [
-        {text: "" , goto: ""},
-        {text: "" , goto: ""},
+        {text: "Run for it" , goto: "escape"},
+        {text: "Give up" , goto: "surrender"},
     ]
 },
 
-mornAft: {
-    text: "",
+escape: {
+    text: "You turn around to run away but are shot on sight.",
     choices: [
-        {text: "" , goto: ""},
-        {text: "" , goto: ""},
+        {text: "Your time in this world has ended." , action: () => resetGame()},
     ]
 },
 
-mornAft: {
-    text: "",
+surrender: {
+    text: "They grab you tying your hands behind your back you have been sentenced to death with no way to escape. They bring you to a secluded location where you are hanged never to be seen again.",
     choices: [
-        {text: "" , goto: ""},
-        {text: "" , goto: ""},
+        {text: "Your time in this world has ended." , action: () => resetGame()},
     ]
 },
-
-
-
-
-
-
-
 
 
 };
