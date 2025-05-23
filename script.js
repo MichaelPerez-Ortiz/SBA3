@@ -241,7 +241,7 @@ earthFastEnd: {
 },
 
 
-//No Path
+//No Path Stay
 
 no: {
     text: "Since you have not accepted this assignment you are now assigned an even more daunting task. This is a classified mission you along with a few others are aware of what is in this folder. ( Hands you the folder) Word must not reach the public. We are currently being invaded by an unknown species. You are to join the others in the briefing room after reading the full report. Good luck soldier. (The officer salutes you) ( You are now alone what do you do?)",
@@ -337,13 +337,6 @@ oneWeek: {
 mornAft: {
     text: "You wake up in the morning to the sound of yelling. One of your comrades is shaking you, you are being invaded. The aliens finally realized that they had the upper hand in this fight and have ambushed you while you were sleeping. Within seconds you are surrounded with nowhere to run, your only option is to fight. You grab your gun where do you shoot it?",
     choices: [
-        {text: "" , goto: ""},
-    ]
-},
-
-mornAft: {
-    text: "",
-    choices: [
         {text: "The head" , goto: "head"},
         {text: "The chest" , goto: "chest"},
         {text: "The leg" , goto: "leg"},//These 3 lead to the same text but I will change the text slightly later
@@ -351,6 +344,8 @@ mornAft: {
     ]
 },
 
+
+//No Ends
 head: {
     text: "You pick your spot aim down the sights and shoot. The bullet breaks upon impact and the alien shrugs it off, soon darkness is upon you.",
     choices: [
@@ -398,7 +393,10 @@ noPush: {
     ]
 },
 
-mornAft: {
+
+//No Path Run
+
+run: {
     text: "",
     choices: [
         {text: "" , goto: ""},
