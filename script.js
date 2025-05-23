@@ -241,6 +241,205 @@ earthFastEnd: {
 },
 
 
+//No Path
+
+no: {
+    text: "Since you have not accepted this assignment you are now assigned an even more daunting task. This is a classified mission you along with a few others are aware of what is in this folder. ( Hands you the folder) Word must not reach the public. We are currently being invaded by an unknown species. You are to join the others in the briefing room after reading the full report. Good luck soldier. (The officer salutes you) ( You are now alone what do you do?)",
+    choices: [
+        {text: "Read the Report" , goto: "noReport"},
+        {text: "Go to the briefing room" , goto: "brief"},
+        {text: "Run away" , goto: "run"},
+    ]
+},
+noReport: {
+    text: "For over two years we have been secretly fending off an alien invasion from a previously undiscovered alien species. The species looks almost human. It seems to contain an exoskeleton, but they are exposed on their lower back. Thats where you hit them. ",
+    choices: [
+        {text: "Go to the briefing room" , goto: "brief" , action: () => addToInventory("Rifle")},
+        {text: "Run away" , goto: "run"},
+    ]
+},
+
+brief: {
+    text: "You go to the briefing room where the instructor splits you into teams and sends you to your positions.",
+    choices: [
+        {text: " - 3 Years Later -" , goto: "year3"},
+    ]
+},
+
+year3: {
+    text: "Since you have been part of this war, you have seen no action. You are the militaries hind legs. You spend all of your time at the back. It's where you eat where you sleep and where you live. You have some time to waste what will you do?",
+    choices: [
+        {text: "Spend time with your comrades" , goto: "comrades"},
+        {text: "Target practice" , goto: "targetP1"},
+        {text: "Get some rest" , goto: "rest1"},
+    ]
+},
+
+comrades: {
+    text: "You and your fellow soldiers spend the day playing games and having fun there wasn't a moment of silence.",
+    choices: [
+        {text: "- 1 Year Later -" , goto: "year4"},
+    ]
+},
+
+targetP1: {
+    text: "You go to the shooting range. You're the only one there. You spend the rest of the day there. You can feel that your aim has improved.",
+    choices: [
+       {text: "- 1 Year Later -" , goto: "year4"},
+    ]
+},
+
+rest1: {
+    text: "You go to sleep early. The night flys by.",
+    choices: [
+        {text: "- 1 Year Later -" , goto: "year4"},
+    ]
+},
+
+year4: {
+    text: "Although you have yet to see the enemy or any signs of a fight it is the only thing that you hear. Sounds of laughter are drowned out by screams of pain and suffering. You see the look of fear taking over the faces of your fellow soldiers.",
+    choices: [
+        {text: "Spend time with the other soldiers" , goto: "soldiers"},
+        {text: "Practice shooting" , goto: "targetP2"},
+        {text: "Rest" , goto: "rest2"},
+    ]
+},
+
+soldiers: {
+    text: "You spend time with your fellow soldiers. You can feel the tension in the air, our forces are dwindling and you can see that your time for battle is closing in.",
+    choices: [
+        {text: "- 1 Week Later -" , goto: "oneWeek"},
+        
+    ]
+},
+targetP2: {
+    text: "You go to the shooting range. The air is stale, and your hands are shaking. You may be going into war soon. Hopefully this doesn't happen when that time comes.",
+    choices: [
+        {text: "- 1 Week Later -" , goto: "oneWeek"},
+        
+    ]
+},
+rest2: {
+    text: "You go to sleep early it's hard for you to fall asleep. The night seems to be taking forever to go by.",
+    choices: [
+        {text: "- 1 Week Later -" , goto: "oneWeek"},
+        
+    ]
+},
+
+oneWeek: {
+    text: "You know that it's just a matter of time before you enter the fray. Everybody seems to be asleep and the shooting range is closed so you go to sleep the division in front of you is marching into battle right now in the morning you'll be doing the same.",
+    choices: [
+        {text: "> The Morning After <" , goto: "mornAft"},
+    ]
+},
+
+mornAft: {
+    text: "You wake up in the morning to the sound of yelling. One of your comrades is shaking you, you are being invaded. The aliens finally realized that they had the upper hand in this fight and have ambushed you while you were sleeping. Within seconds you are surrounded with nowhere to run, your only option is to fight. You grab your gun where do you shoot it?",
+    choices: [
+        {text: "" , goto: ""},
+    ]
+},
+
+mornAft: {
+    text: "",
+    choices: [
+        {text: "The head" , goto: "head"},
+        {text: "The chest" , goto: "chest"},
+        {text: "The leg" , goto: "leg"},//These 3 lead to the same text but I will change the text slightly later
+        {text: "The back" , goto: "back"},
+    ]
+},
+
+head: {
+    text: "You pick your spot aim down the sights and shoot. The bullet breaks upon impact and the alien shrugs it off, soon darkness is upon you.",
+    choices: [
+        {text: "Your time in this world has ended."  , action: () => resetGame()},
+
+    ]
+},
+
+chest: {
+    text: "You pick your spot aim down the sights and shoot. The bullet breaks upon impact and the alien shrugs it off, soon darkness is upon you.",
+    choices: [
+        {text: "Your time in this world has ended."  , action: () => resetGame()},
+
+    ]
+},
+
+leg: {
+    text: "You pick your spot aim down the sights and shoot. The bullet breaks upon impact and the alien shrugs it off, soon darkness is upon you.",
+    choices: [
+        {text: "Your time in this world has ended."  , action: () => resetGame()},
+
+    ]
+},
+
+back: {
+    text: "You pick your spot aim down the sights and shoot. The bullet just reaches the aliens flesh stumbling it for a moment buying you some time to escape. As you make your escape you see ally reinforcements swarm the enemy. You reach a room marked classified. You have no choice but to enter. There you see a button that seems to be wired to a large amount of explosives. If you press it you will die but you will save the lives of millions if you don't Jupiter may be lost. Do you push the button?",
+    choices: [
+        {text: "Push the button" , goto: "push"},
+        {text: "Don't push the button" , goto: "noPush"},
+    ]
+},
+
+push: {
+    text: "Your time in this world has ended, but you die knowing that you helped save your home.",
+    choices: [
+        {text: "." , action: () => resetGame()},
+     
+    ]
+},
+
+noPush: {
+    text: "You decide not to push the button. Moments later you hear cheers coming from outside followed by a familiar voice. It was the officer who gave you this assignment. You exit the room and see that we have won. The war is over and you survived.",
+    choices: [
+        {text: "Many lives were lost but in the process many were saved." , action: () => resetGame()},//Maybe expand on later
+    ]
+},
+
+mornAft: {
+    text: "",
+    choices: [
+        {text: "" , goto: ""},
+        {text: "" , goto: ""},
+    ]
+},
+
+mornAft: {
+    text: "",
+    choices: [
+        {text: "" , goto: ""},
+        {text: "" , goto: ""},
+    ]
+},
+
+mornAft: {
+    text: "",
+    choices: [
+        {text: "" , goto: ""},
+        {text: "" , goto: ""},
+    ]
+},
+
+mornAft: {
+    text: "",
+    choices: [
+        {text: "" , goto: ""},
+        {text: "" , goto: ""},
+    ]
+},
+
+mornAft: {
+    text: "",
+    choices: [
+        {text: "" , goto: ""},
+        {text: "" , goto: ""},
+    ]
+},
+
+
+
 
 
 
