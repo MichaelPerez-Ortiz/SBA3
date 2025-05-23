@@ -6,8 +6,8 @@ const playerForm = document.getElementById("player-form");
 const playerNameInput = document.getElementById("player-name");
 const inventoryList = document.getElementById("inventory-list");
 const choiceTemplate = document.getElementById("choice-template");
-const inventorySection = document.querySelector(".inventory");
-const gameContainer = document.querySelector(".game-container");
+const inventorySection = document.querySelector('.inventory');
+const gameContainer = document.querySelector('.game-container');
 
 
 
@@ -60,7 +60,7 @@ neptune1: {
     text: "You reach Neptune and are amazed. It looks like a Metropolis, the city is not on the ground but hovering above it. This planet shows great promise. You land your ship on the nearest landing pad where you are greeted by armed soldiers. They see you as an intruder. You quickly explain your situation and are escorted to their laboratories where they explain the science behind their discoveries and give you an older model of their technology. You have completed your mission and have returned to Jupiter with the new technology. The scientists quickly begin work on saving their planet.", 
     choices: [
 
-        { text: "Your name will go down in History." , action: () => resetGame() , requires: "Advanced technology"},
+        { text: "Your name will go down in History." , action: () => resetGame()},
     ]
 },
 
@@ -79,7 +79,7 @@ neptuneEarth: {
     text: "You decide to leave Earth and go to Neptune. Upon reaching Neptune you are amazed. It looks like a Metropolis, the city is not on the ground but hovering above it. This planet shows great promise. You land your ship on the nearest landing pad where you are greeted by armed soldiers. They see you as an intruder. You quickly explain your situation and are escorted to their laboratories where they explain the science behind their discoveries and give you an older model of their technology. You have completed your mission and have returned to Jupiter with the new technology. The scientists quickly begin work on saving their planet.",
     choices: [
 
-        { text: "Your name will go down in History." , action: () => resetGame() , requires: "Advanced technology"},
+        { text: "Your name will go down in History." , action: () => resetGame()},
     ]
 },
 
@@ -121,7 +121,7 @@ neptune2: {
 text: "You reach Neptune and are amazed. It looks like a Metropolis, the city is not on the ground but hovering above it. This planet shows great promise. You land your ship on the nearest landing pad where you are greeted by armed soldiers. They see you as an intruder. You quickly explain your situation and are escorted to their laboratories where they explain the science behind their discoveries and give you an older model of their technology. You have completed your mission and have returned to Jupiter with the new technology. The scientists quickly begin work on saving their planet.Your name will go down in History.",
     choices: [
 
-        { text: "Your name will go down in History." , action: () => resetGame() , requires: "Advanced technology"},
+        { text: "Your name will go down in History." , action: () => resetGame()},
     ]
 },
 
@@ -236,49 +236,7 @@ earthFastEnd: {
     text: "You stay on Earth searching for a way to save your planet. You search all day and night but find nothing. The people of Earth have not come across this problem and therefore have not had to search for a solution. This was a wasted trip." + "You return to your ship and travel to Neptune.(You are on Your third day)You reach Neptune and are amazed. It looks like a Metropolis the city is not on the ground but hovering above it. This planet shows great promise. You land your ship on the nearest landing pad where you are greeted by armed soldiers. They see you as an intruder. You quickly explain your situation and are escorted to their laboratories where they explain the science behind their discoveries and gives you an older model of their technology. You have completed your mission and have returned to Jupiter with the new technology. The scientist quickly begin work on saving their planet.",
     choices: [
 
-        { text: "Your name will go down in History." , action: () => resetGame() , requires: "Advanced technology"},
-    ]
-},
-
-
-//No Path
-
-no: {
-    text: "Since you have not accepted this assignment you are now assigned an even more daunting task. This is a classified mission you along with a few others are aware of what is in this folder. ( Hands you the folder) Word must not reach the public. We are currently being invaded by an unknown species. You are to join the others in the briefing room after reading the full report. Good luck soldier. (The officer salutes you) ( You are now alone what do you do?)",
-    choices: [
-        {text: "Read the Report" , goto: "noReport"},
-        {text: "Go to the briefing room" , goto: "brief"},
-        {text: "Run away" , goto: "run"},
-    ]
-},
-noReport: {
-    text: "For over two years we have been secretly fending off an alien invasion from a previously undiscovered alien species. The species looks almost human. It seems to contain an exoskeleton, but they are exposed on their lower back. Thats where you hit them. ",
-    choices: [
-        {text: "Go to the briefing room" , goto: "brief" , action: () => addToInventory("Rifle")},
-        {text: "Run away" , goto: "run"},
-    ]
-},
-
-brief: {
-    text: "You go to the briefing room where the instructor splits you into teams and sends you to your positions.",
-    choices: [
-        {text: " - 3 Years Later -" , goto: "year3"},
-    ]
-},
-
-year3: {
-    text: "Since you have been part of this war, you have seen no action. You are the militaries hind legs. You spend all of your time at the back. It's where you eat where you sleep and where you live. You have some time to waste what will you do?",
-    choices: [
-        {text: "Spend time with your comrades" , goto: "comrades"},
-        {text: "Target practice" , goto: "targetP1"},
-        {text: "Get some rest" , goto: "rest1"},
-    ]
-},
-
-comrades: {
-    text: "You and your fellow soldiers spend the day playing games and having fun there wasn't a moment of silence.",
-    choices: [
-        {text: "- 1 Year Later -" , goto: "year4"},
+        { text: "Your name will go down in History." , action: () => resetGame()},
     ]
 },
 
@@ -439,22 +397,20 @@ function resetGame() {
     
     gameScreen.classList.add("hidden");
     startScreen.classList.remove("hidden");
-    gameContainer.style.height = "200px";
+    gameContainer.style.height = '200px';
 
     playerNameInput.value = "";
     
-    inventorySection.classList.add("hidden");
+    inventorySection.classList.add('hidden');
     
-    document.querySelector(".game-container")?.classList.remove("dynamic");
+    document.querySelector('.game-container')?.classList.remove('dynamic');
     
     storyText.textContent = "";
     choicesDiv.innerHTML = "";
     
     currentPosition = "start";
 }
-
 // Event Listeners
-
 playerForm.addEventListener("submit", startGame);
 window.addEventListener("load", () => {
     if (localStorage.getItem("playerName")) {
@@ -475,12 +431,10 @@ function validateName(event) {
         if (!document.querySelector(".error")) {
             playerForm.appendChild(errorDiv);
      }
-            gameContainer.classList.add("expand");
-        setTimeout(() => gameContainer.classList.remove("expand"), 300);
-        return false;
+            gameContainer.classList.add('expand');
+        setTimeout(() => gameContainer.classList.remove('expand'), 300);
     } else {
         errorDiv.remove();
-        return true
     }
 }
 
@@ -488,13 +442,13 @@ function validateName(event) {
 //Typing Animation
 function typeText(element, text, callback) {
     let index = 0;
-    element.textContent = "";
+    element.textContent = '';
     
     function type() {
         if (index < text.length) {
             element.textContent += text[index];
             index++;
-             setTimeout(type, 1);;
+             setTimeout(type, 7);;
         } else if (callback) {
             callback();
         }
@@ -515,8 +469,8 @@ function startGame(event) {
         startScreen.classList.add("hidden");
         gameScreen.classList.remove("hidden");
 
-         localStorage.setItem("playerName", playerName);
-            gameContainer.style.height = "800px";
+         localStorage.setItem('playerName', playerName);
+            gameContainer.style.height = '800px';
     
    
     
@@ -568,15 +522,15 @@ typeText(storyText, start.text, () => {
     });
 }
 
-inventorySection.classList.add("hidden");
+inventorySection.classList.add('hidden');
 
 function addToInventory(item) {
     if (!inventory.includes(item)) {
       
-        inventorySection.classList.remove("hidden");
+        inventorySection.classList.remove('hidden');
         
         inventory.push(item);
-        const li = document.createElement("li");
+        const li = document.createElement('li');
         li.textContent = item;
         inventoryList.appendChild(li);
     }

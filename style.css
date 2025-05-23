@@ -30,7 +30,7 @@ h1{
 .game-container {
     background-color: #0d1d3c;
     background-image: linear-gradient(to bottom right, #0d1d3c, #526892 );
-    min-height: 200px;
+     min-height: 200px;
     padding: 20px;
     border-radius: 8px;
 }
