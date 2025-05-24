@@ -481,7 +481,8 @@ surrender: {
 },
 
 
-};
+};//Maybe bring all endings to a seperate ending page before reset instead of resetting right after the end message.
+
 //CoreFunctions
 
 
