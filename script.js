@@ -538,23 +538,28 @@ function validateName(event) {
 
 
 //Typing Animation
+
 function typeText(element, text, callback) {
     let index = 0;
-    element.textContent = "";
+    element.innerHTML = `<span class="typing-text"></span><span class="cursor"> | </span>`;
+    const typingSpan = element.querySelector('.typing-text');
     
     function type() {
         if (index < text.length) {
-            element.textContent += text[index];
+            typingSpan.textContent = text.substring(0, index + 1);
             index++;
-             setTimeout(type, 7);;
-        } else if (callback) {
-            callback();
+            setTimeout(type, 12);
+        } else {
+            
+            element.innerHTML = `${text}<span class="cursor">|</span>`;
+            if (callback) {
+                callback();
+            }
         }
     }
     
     requestAnimationFrame(type);
 }
-
 
 function startGame(event) {
     event.preventDefault();
@@ -647,3 +652,4 @@ function addToInventory(item) {
 //     alert.returnValue = "";
 //     return "The game will reset. Continue?";
 // });
+
