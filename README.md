@@ -1,5 +1,5 @@
 # SBA3
-Planetary Invasion 
+Planetary Invasion_
 
 By: Michael Perez-Ortiz 
 
@@ -19,3 +19,29 @@ Try out all the different combinations of choices to find the ending you like be
 
       ----------------------------------------------------------------------------------------------
 
+I could not get this to display the message I wanted. 
+
+window.onbeforeunload = function(alert) {
+    return "The game will reset. Continue?";
+};
+
+
+
+I looked on w3schools, stackoverflow, developer mozzilla and some youtube videos which all said to do whats below and that did notwork either.
+
+// window.addEventListener("onbeforeunload" , function(alert) {
+//     alert.preventDefault();
+//     alert.returnValue = "";
+//     return "The game will reset. Continue?";
+// });
+
+
+Also I might have commited a few things multiple times trying to figure out how to get back a commit I accidentally deleted when trying to edit it. Trying to fix this almost resulted in me losing a ton of progress. It also lead to me accidentally merging something. git is dangerous. I have learned to just leave typos alone. If you are reading this, heed my warning.
+
+
+
+                                 -------------------------
+
+                                        -------------
+                                            ----
+                                           
