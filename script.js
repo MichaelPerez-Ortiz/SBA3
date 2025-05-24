@@ -642,9 +642,9 @@ function addToInventory(item) {
 
 // BOM 
 
-// window.onbeforeunload = function(alert) {
-//     return "The game will reset. Continue?";
-// };
+window.onbeforeunload = function(alert) {
+    return "The game will reset. Continue?";
+};
 
 
 // window.addEventListener("onbeforeunload" , function(alert) {
@@ -652,4 +652,3 @@ function addToInventory(item) {
 //     alert.returnValue = "";
 //     return "The game will reset. Continue?";
 // });
-
